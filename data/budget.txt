@@ -1,0 +1,7 @@
+Månadsbudget:
+Hyra: 5200
+Mat: 2500
+Transport: 900
+Nöje: 1200
+Sparande: 1500
+Inkomst: 13500
