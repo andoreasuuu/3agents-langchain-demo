@@ -55,7 +55,7 @@ Exempel på frågor
 - Räkna ut (3500 + 2200) / 2
 - Läs filen data/budget.txt och räkna ut hur mycket pengar som är kvar efter utgifter
 
-
+---
 Exempelfiler
 Projektet innehåller exempeldata i data/:
 - japanese_notes.txt – japanska begrepp
