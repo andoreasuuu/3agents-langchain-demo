@@ -65,3 +65,77 @@ Projektet innehåller exempeldata i data/:
 Alla agenter:
 - använder samma grundstruktur
 - har egen systemprompt
+---
+# MCP Study Agent
+
+Detta projekt innehåller en agent som använder en extern MCP-server för att hjälpa användaren planera och analysera skoluppgifter.
+
+# Funktionalitet
+
+Agenten kan:
+
+Lista uppgifter
+Prioritera vad som ska göras först
+Uppskatta hur lång tid en uppgift tar
+Ge en sammanfattning av uppgifter
+
+Agenten använder verktyg från en extern MCP-server.
+
+# Viktiga krav (uppfyllda)
+
+1. Koppling till MCP-server
+
+Agenten ansluter via HTTP:
+
+"url": "http://127.0.0.1:8000/mcp"
+
+2. Filtrering av verktyg
+
+Agenten får endast tillgång till ett urval av verktyg:
+
+ALLOWED_TOOL_NAMES = {
+    "list_assignments",
+    "estimate_study_time",
+    "prioritize_assignments",
+    "get_assignment_summary",
+}
+
+Filtreringen sker i agentkoden, inte i MCP-servern.
+
+3. Middleware
+
+Agenten använder middleware med @wrap_tool_call för att bearbeta output från MCP-servern innan den används.
+
+# Starta agenten
+
+Aktivera virtual environment:
+
+source .venv/Scripts/activate
+
+Installera dependencies:
+
+pip install -r requirements.txt
+
+Starta agenten:
+
+python -m examples.agents.mcp_assignment_agent
+Körordning
+Starta MCP-servern (i separat terminal)
+Starta agenten
+
+---
+Exempel på frågor
+Vilka uppgifter har jag?
+Vilken uppgift borde jag börja med först?
+Hur lång tid tar en uppgift med 20 sidor, 5 övningar och svårighetsgrad 4?
+Ge mig en sammanfattning av mina uppgifter.
+Lägg till en ny uppgift
+
+(Sista frågan visar att agenten inte har tillgång till alla verktyg.)
+---
+# Arkitektur
+![Systemarkitektur](diagram_agent_mcp.jpg)
+
+# Syfte
+
+Projektet demonstrerar hur en agent kan använda externa verktyg via MCP, samt hur verktyg kan filtreras och resultat bearbetas innan de används.
